@@ -1,0 +1,181 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&family=Fira+Code:wght@400;500&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  --color-primary: #4f46e5;
+  --color-primary-light: #6d64f0;
+  --color-primary-dark: #3730a3;
+  --color-accent: #0891b2;
+  --color-accent-light: #22d3ee;
+  --color-bg: #f8f8f7;
+  --color-bg-card: #ffffff;
+  --color-text: #18181b;
+  --color-text-muted: #52525b;
+  --color-border: #e4e4e7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01";
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg,
+      var(--color-primary) 0%,
+      var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section spacing */
+.section {
+  padding: 5.5rem 1.5rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+/* Section label — shared across all sections */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+.section-label-text {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.section-label-line {
+  width: 1.75rem;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  opacity: 0.45;
+  display: inline-block;
+}
+
+/* Card */
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 24px -6px rgba(79, 70, 229, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Tag / badge */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: #ede9fe;
+  color: var(--color-primary-dark);
+  letter-spacing: 0.01em;
+}
+
+/* Button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  background: transparent;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.btn-outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+/* Fira Code for code blocks */
+code,
+pre {
+  font-family: "Fira Code", monospace;
+}
+
+/* Blog prose */
+.prose h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p {
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.prose pre {
+  background: #1e1b4b;
+  color: #c7d2fe;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+}
+
+.prose code:not(pre code) {
+  background: #ede9fe;
+  color: var(--color-primary-dark);
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 0.87em;
+}
