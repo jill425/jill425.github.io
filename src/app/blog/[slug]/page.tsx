@@ -5,7 +5,11 @@ import { notFound } from "next/navigation";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-    return getAllPosts().map((post) => ({ slug: post.slug }));
+    const posts = getAllPosts();
+    if (posts.length == 0) {
+        return [{ slug: 'no-posts-yet' }];
+    }
+    return posts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
