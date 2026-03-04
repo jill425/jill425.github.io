@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { getPostBySlug, getAllPosts } from "@/lib/posts";
+import { getPostBySlug, getAllPosts } from "../../../lib/posts";
 import { notFound } from "next/navigation";
 
-export function generateStaticParams() {
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
     return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 

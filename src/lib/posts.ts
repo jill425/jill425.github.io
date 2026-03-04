@@ -101,7 +101,12 @@ export function getPostBySlug(slug: string): Post | undefined {
 }
 
 export function getAllPosts(): Post[] {
-    return posts.sort(
+    const allposts = [...posts].sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
+    if (!allposts || allposts.length === 0) {
+        console.warn("警告：沒有找到任何文章，將不會生成任何靜態頁面！");
+        return [];
+    }
+    return allposts;
 }
