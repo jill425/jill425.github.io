@@ -114,12 +114,14 @@ export function LinksSection() {
             >
                 {socialLinks.map((link) => {
                     const meta = LINK_META[link.icon] || {};
+                    const isEmailLink = link.href.startsWith("mailto:");
+
                     return (
                         <a
                             key={link.label}
                             href={link.href}
-                            target={link.icon !== "email" ? "_blank" : undefined}
-                            rel="noopener noreferrer"
+                            target={isEmailLink ? undefined : "_blank"}
+                            rel={isEmailLink ? undefined : "noopener noreferrer"}
                             style={{
                                 display: "flex",
                                 alignItems: "center",
