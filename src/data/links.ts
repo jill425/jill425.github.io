@@ -2,6 +2,7 @@ export type SocialLink = {
     label: string;
     href: string;
     icon: "github" | "email";
+    email?: string;
 };
 
 export const socialLinks: SocialLink[] = [
@@ -14,5 +15,6 @@ export const socialLinks: SocialLink[] = [
         label: "Email",
         href: "mailto:jill.chen2017@email.com",
         icon: "email",
+        email: "jill.chen2017@email.com",
     },
 ];

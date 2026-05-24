@@ -2,6 +2,7 @@
 
 import { socialLinks } from "@/data/links";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useState } from "react";
 
 const LINKS_CONTENT = {
     en: {
@@ -60,6 +61,17 @@ const LINK_META: Record<string, { label_en: string; label_zh: string; color: str
 export function LinksSection() {
     const { language } = useLanguage();
     const content = LINKS_CONTENT[language];
+    const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
+
+    async function copyEmail(email: string) {
+        try {
+            await navigator.clipboard.writeText(email);
+            setCopiedEmail(email);
+            window.setTimeout(() => setCopiedEmail(null), 1800);
+        } catch {
+            setCopiedEmail(null);
+        }
+    }
 
     return (
         <section id="contact" className="section" style={{ textAlign: "center" }}>
@@ -114,47 +126,88 @@ export function LinksSection() {
             >
                 {socialLinks.map((link) => {
                     const meta = LINK_META[link.icon] || {};
-                    const isEmailLink = link.href.startsWith("mailto:");
+                    const isEmailLink = link.icon === "email" && link.email;
+                    const label = language === "en" ? (meta.label_en || link.label) : (meta.label_zh || link.label);
+                    const commonStyle = {
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.65rem",
+                        padding: "0.8rem 1.4rem",
+                        background: "white",
+                        border: "1px solid var(--color-border)",
+                        borderRadius: "0.65rem",
+                        textDecoration: "none",
+                        color: meta.color || "var(--color-primary)",
+                        fontWeight: 600,
+                        fontSize: "0.875rem",
+                        transition: "all 0.2s ease",
+                        boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
+                        letterSpacing: "-0.01em",
+                    };
+                    const hoverProps = {
+                        onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
+                            const el = e.currentTarget as HTMLElement;
+                            el.style.transform = "translateY(-3px)";
+                            el.style.boxShadow = `0 8px 24px -6px rgba(79,102,241,0.2)`;
+                            el.style.borderColor = "rgba(79,70,229,0.3)";
+                            el.style.background = meta.bg || "white";
+                        },
+                        onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
+                            const el = e.currentTarget as HTMLElement;
+                            el.style.transform = "translateY(0)";
+                            el.style.boxShadow = "0 1px 4px rgba(0,0,0,0.05)";
+                            el.style.borderColor = "var(--color-border)";
+                            el.style.background = "white";
+                        },
+                    };
+
+                    if (isEmailLink) {
+                        return (
+                            <div
+                                key={link.label}
+                                style={{ display: "flex", gap: "0.55rem", alignItems: "stretch", flexWrap: "wrap", justifyContent: "center" }}
+                            >
+                                <a
+                                    href={link.href}
+                                    style={commonStyle}
+                                    {...hoverProps}
+                                >
+                                    {ICONS[link.icon]}
+                                    <span style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", lineHeight: 1.35 }}>
+                                        <span>{label}</span>
+                                        <span style={{ color: "var(--color-text-muted)", fontSize: "0.78rem", fontWeight: 500 }}>
+                                            {link.email}
+                                        </span>
+                                    </span>
+                                </a>
+                                <button
+                                    type="button"
+                                    onClick={() => copyEmail(link.email || "")}
+                                    style={{
+                                        ...commonStyle,
+                                        cursor: "pointer",
+                                        fontFamily: "inherit",
+                                        padding: "0.8rem 1rem",
+                                    }}
+                                    {...hoverProps}
+                                >
+                                    {copiedEmail === link.email ? (language === "zh" ? "已複製" : "Copied") : (language === "zh" ? "複製" : "Copy")}
+                                </button>
+                            </div>
+                        );
+                    }
 
                     return (
                         <a
                             key={link.label}
                             href={link.href}
-                            target={isEmailLink ? undefined : "_blank"}
-                            rel={isEmailLink ? undefined : "noopener noreferrer"}
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.65rem",
-                                padding: "0.8rem 1.4rem",
-                                background: "white",
-                                border: "1px solid var(--color-border)",
-                                borderRadius: "0.65rem",
-                                textDecoration: "none",
-                                color: meta.color || "var(--color-primary)",
-                                fontWeight: 600,
-                                fontSize: "0.875rem",
-                                transition: "all 0.2s ease",
-                                boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
-                                letterSpacing: "-0.01em",
-                            }}
-                            onMouseEnter={(e) => {
-                                const el = e.currentTarget as HTMLElement;
-                                el.style.transform = "translateY(-3px)";
-                                el.style.boxShadow = `0 8px 24px -6px rgba(79,102,241,0.2)`;
-                                el.style.borderColor = "rgba(79,70,229,0.3)";
-                                el.style.background = meta.bg || "white";
-                            }}
-                            onMouseLeave={(e) => {
-                                const el = e.currentTarget as HTMLElement;
-                                el.style.transform = "translateY(0)";
-                                el.style.boxShadow = "0 1px 4px rgba(0,0,0,0.05)";
-                                el.style.borderColor = "var(--color-border)";
-                                el.style.background = "white";
-                            }}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={commonStyle}
+                            {...hoverProps}
                         >
                             {ICONS[link.icon]}
-                            {language === "en" ? (meta.label_en || link.label) : (meta.label_zh || link.label)}
+                            {label}
                         </a>
                     );
                 })}
