@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { getAllPosts } from "@/lib/posts";
+import type { Post } from "@/lib/posts";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const BLOG_CONTENT = {
@@ -15,10 +15,10 @@ const BLOG_CONTENT = {
     }
 };
 
-export function BlogSection() {
+export function BlogSection({ posts: allPosts }: { posts: Post[] }) {
     const { language } = useLanguage();
     const content = BLOG_CONTENT[language];
-    const posts = getAllPosts().slice(0, 3);
+    const posts = allPosts.slice(0, 3);
 
     return (
         <section

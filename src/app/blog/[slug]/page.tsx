@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { getPostBySlug, getAllPosts } from "@/lib/posts";
+import { getAllPostsFromFiles, getPostBySlugFromFiles } from "@/lib/posts-server";
 import { notFound } from "next/navigation";
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-    const posts = getAllPosts();
+    const posts = getAllPostsFromFiles();
     if (posts.length == 0) {
         return [{ slug: 'no-posts-yet' }];
     }
@@ -18,7 +18,7 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>;
 }) {
     const { slug } = await params;
-    const post = getPostBySlug(slug);
+    const post = getPostBySlugFromFiles(slug);
     if (!post) return {};
     return {
         title: `${post.title} — Jill's Blog`,
@@ -78,7 +78,7 @@ export default async function BlogPostPage({
     params: Promise<{ slug: string }>;
 }) {
     const { slug } = await params;
-    const post = getPostBySlug(slug);
+    const post = getPostBySlugFromFiles(slug);
     if (!post) notFound();
 
     return (

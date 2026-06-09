@@ -6,8 +6,10 @@ import { TimelineSection } from "@/components/sections/TimelineSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { BlogSection } from "@/components/sections/BlogSection";
 import { LinksSection } from "@/components/sections/LinksSection";
+import { getAllPostsFromFiles } from "@/lib/posts-server";
 
 export default function Home() {
+  const posts = getAllPostsFromFiles();
   return (
     <>
       <Navbar />
@@ -16,7 +18,7 @@ export default function Home() {
         <AboutSection />
         <TimelineSection />
         <ProjectsSection />
-        <BlogSection />
+        <BlogSection posts={posts} />
         <LinksSection />
       </main>
       <Footer />
