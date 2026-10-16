@@ -12,10 +12,10 @@ export const experience: Record<"en" | "zh", TimelineEntry[]> = {
         {
             type: "work",
             title: "Developer",
-            organization: "Sheen Trail Digital (行晨數位有限公司)",
+            organization: "Independent Developer",
             period: "2025/05 – Present",
             description: [
-                "Founded a digital agency and independently developed cross-platform mobile applications using Flutter.",
+                "Freelance developer building cross-platform mobile applications with Flutter.",
                 "Successfully launched and currently operating two mobile apps in production."
             ],
             tags: ["Flutter", "Dart", "Mobile App Development"],
@@ -23,7 +23,7 @@ export const experience: Record<"en" | "zh", TimelineEntry[]> = {
         {
             type: "work",
             title: "Data Engineer",
-            organization: "Inno Tech (伊諾科技有限公司)",
+            organization: "Data Services Company",
             period: "2020/07 – 2025/01",
             description: [
                 "Architected and deployed Apache NiFi on GCP as a mid-layer big data platform to orchestrate and migrate data lake flows.",
@@ -38,7 +38,7 @@ export const experience: Record<"en" | "zh", TimelineEntry[]> = {
         {
             type: "work",
             title: "Software Engineer",
-            organization: "Chunyo Information (中佑資訊公司)",
+            organization: "Software Company",
             period: "2017/08 – 2019/06",
             description: [
                 "Developed multi-dimensional business reporting systems to provide BI teams with high-quality metrics, supporting recommendation system iterations.",
@@ -63,10 +63,10 @@ export const experience: Record<"en" | "zh", TimelineEntry[]> = {
         {
             type: "work",
             title: "開發工程師",
-            organization: "行晨數位有限公司 (Sheen Trail Digital)",
+            organization: "獨立開發者",
             period: "2025/05 – 仍在職",
             description: [
-                "創立數位公司，使用 Flutter 獨立開發跨平台行動應用程式。",
+                "獨立接案開發，使用 Flutter 開發跨平台行動應用程式。",
                 "目前成功上線運營中，負責從需求分析、架構設計到上架維運的完整軟體生命週期。"
             ],
             tags: ["Flutter", "Dart", "Mobile App Development"],
@@ -74,7 +74,7 @@ export const experience: Record<"en" | "zh", TimelineEntry[]> = {
         {
             type: "work",
             title: "數據工程師",
-            organization: "伊諾科技有限公司",
+            organization: "資料服務公司",
             period: "2020/07 – 2025/01",
             description: [
                 "在 GCP 建置 Apache NiFi 作為大數據處理平台中介層，統一調度與搬移資料湖數據流，確保基礎建設高效產出。",
@@ -89,7 +89,7 @@ export const experience: Record<"en" | "zh", TimelineEntry[]> = {
         {
             type: "work",
             title: "軟體工程師",
-            organization: "中佑資訊公司",
+            organization: "軟體公司",
             period: "2017/08 – 2019/06",
             description: [
                 "負責全站遊戲數據即時計算與報表產出。",

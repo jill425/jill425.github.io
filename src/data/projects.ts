@@ -28,17 +28,14 @@ export const projects: Record<"en" | "zh", Project[]> = {
         {
             title: "Neonatal Emergency Drug Guide",
             description:
-                "",
+                "A mobile reference app for neonatal emergency medication, built with Flutter and published on iOS and Android.",
             tags: ["Flutter", "Dart", "Mobile App Development"],
-            ios: "https://apps.apple.com/tw/app/id6755082556",
-            android: "https://play.google.com/store/apps/details?id=com.sheentrail.dosemate",
         },
         {
             title: "QT Garden",
             description:
-                "",
+                "A Flutter mobile app for daily quiet-time (QT) practice, published on iOS.",
             tags: ["Flutter", "Dart", "Mobile App Development"],
-            ios: "https://apps.apple.com/tw/app/id6744087320",
         },
     ],
     zh: [
@@ -61,17 +58,14 @@ export const projects: Record<"en" | "zh", Project[]> = {
         {
             title: "新生兒急救藥物指引",
             description:
-                "",
+                "新生兒急救用藥的行動參考工具，使用 Flutter 開發，已上架 iOS 與 Android。",
             tags: ["Flutter", "Dart", "Mobile App Development"],
-            ios: "https://apps.apple.com/tw/app/id6755082556",
-            android: "https://play.google.com/store/apps/details?id=com.sheentrail.dosemate",
         },
         {
             title: "靈修花園",
             description:
-                "",
+                "協助每日靈修（QT）的行動應用程式，使用 Flutter 開發，已上架 iOS。",
             tags: ["Flutter", "Dart", "Mobile App Development"],
-            ios: "https://apps.apple.com/tw/app/id6744087320",
         },
     ]
 };
