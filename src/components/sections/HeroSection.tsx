@@ -6,16 +6,16 @@ const HERO_CONTENT = {
     en: {
         greeting: "Hello, I'm",
         name: "Jill",
-        role: "Data Engineer",
-        bio: "A Data Engineer specializing in big data platforms, asynchronous task architectures, and distributed web scraping systems. I extensively leverage AI-assisted development tools to drastically accelerate iteration and build high-concurrency pipelines from scratch.",
+        role: "AI Engineer · Backend & Data",
+        bio: "An AI engineer working across backend and data, with a background in big data platforms and distributed systems. I take products on my own from planning and architecture through implementation and launch, and I put AI to work reliably — gate tests, isolated acceptance and eval thresholds keep AI-written code and LLM features verifiable, not just fast.",
         available: "Open to opportunities",
         scrollHint: "scroll to explore"
     },
     zh: {
         greeting: "你好，我是",
         name: "Jill",
-        role: "Data Engineer",
-        bio: "專注於大數據處理平台建置、非同步任務架構設計與分散式爬蟲系統開發的 Data Engineer。擅長深度結合 AI 輔助開發，以此大幅提升產品交付與迭代效率，從零到一打造高併發數據流架構。",
+        role: "AI Engineer · Backend & Data",
+        bio: "橫跨後端與數據的 AI 工程師，具備大數據平台與分散式系統背景。能獨自把產品從規劃、架構設計一路做到實作上線，並讓 AI 在工作中可靠地發揮作用：用守門測試、隔離驗收與 eval 門檻，讓 AI 寫的 code 與 LLM 功能都可驗證，而不只是快。",
         available: "歡迎合作洽談",
         scrollHint: "往下滑動"
     }
@@ -23,7 +23,7 @@ const HERO_CONTENT = {
 
 const STATS = [
     { en: "Years of Experience", zh: "年工作經驗", value: "8+" },
-    { en: "Production Apps", zh: "上線 Apps", value: "2" },
+    { en: "Shipped Products", zh: "上線作品", value: "3" },
     { en: "Tech Stack", zh: "技術棧", value: "14+" },
 ];
 
@@ -264,14 +264,14 @@ export function HeroSection() {
                             <span style={{ color: "#86efac" }}>name</span>: <span style={{ color: "#fcd34d" }}>&quot;Jill&quot;</span>,
                         </div>
                         <div style={{ paddingLeft: "1rem" }}>
-                            <span style={{ color: "#86efac" }}>role</span>: <span style={{ color: "#fcd34d" }}>&quot;Data Engineer&quot;</span>,
+                            <span style={{ color: "#86efac" }}>role</span>: <span style={{ color: "#fcd34d" }}>&quot;AI Engineer · Backend &amp; Data&quot;</span>,
                         </div>
                         <div style={{ paddingLeft: "1rem" }}>
                             <span style={{ color: "#86efac" }}>focus</span>: [
                         </div>
-                        <div style={{ paddingLeft: "2rem", color: "#fcd34d" }}>&quot;Big Data&quot;,</div>
+                        <div style={{ paddingLeft: "2rem", color: "#fcd34d" }}>&quot;Backend&quot;,</div>
                         <div style={{ paddingLeft: "2rem", color: "#fcd34d" }}>&quot;AI Tools&quot;,</div>
-                        <div style={{ paddingLeft: "2rem", color: "#fcd34d" }}>&quot;Distributed Systems&quot;,</div>
+                        <div style={{ paddingLeft: "2rem", color: "#fcd34d" }}>&quot;Product, End to End&quot;,</div>
                         <div style={{ paddingLeft: "1rem" }}>],</div>
                         <div style={{ paddingLeft: "1rem" }}>
                             <span style={{ color: "#86efac" }}>available</span>: <span style={{ color: "#86efac" }}>true</span>,
@@ -312,10 +312,10 @@ export function HeroSection() {
                         </div>
                         <div>
                             <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--color-text)", letterSpacing: "-0.01em" }}>
-                                {language === "en" ? "High-Concurrency Pipelines" : "高併發數據流"}
+                                {language === "en" ? "Reliable AI, Verified" : "可驗證的可靠 AI"}
                             </div>
                             <div style={{ fontSize: "0.72rem", color: "var(--color-text-muted)", marginTop: "0.15rem" }}>
-                                {language === "en" ? "Built from 0 → 1 at scale" : "從零到一的產品交付"}
+                                {language === "en" ? "Gate tests · isolated acceptance · eval thresholds" : "守門測試 · 隔離驗收 · eval 門檻"}
                             </div>
                         </div>
                     </div>

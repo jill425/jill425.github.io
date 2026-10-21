@@ -2,23 +2,28 @@
 
 import Link from "next/link";
 import type { Post } from "@/lib/posts";
+import { PostCard } from "@/components/PostCard";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const BLOG_CONTENT = {
     en: {
         sectionLabel: "Blog",
-        title: "Latest Writing"
+        title: "Latest Writing",
+        viewAll: "View all posts"
     },
     zh: {
         sectionLabel: "文章",
-        title: "最新文章"
+        title: "最新文章",
+        viewAll: "看全部文章"
     }
 };
+
+const HOME_POST_COUNT = 3;
 
 export function BlogSection({ posts: allPosts }: { posts: Post[] }) {
     const { language } = useLanguage();
     const content = BLOG_CONTENT[language];
-    const posts = allPosts.slice(0, 3);
+    const posts = allPosts.slice(0, HOME_POST_COUNT);
 
     return (
         <section
@@ -51,85 +56,17 @@ export function BlogSection({ posts: allPosts }: { posts: Post[] }) {
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
                     {posts.map((post) => (
-                        <Link
-                            key={post.slug}
-                            href={`/blog/${post.slug}`}
-                            style={{ textDecoration: "none" }}
-                        >
-                            <article
-                                className="card"
-                                style={{
-                                    display: "grid",
-                                    gridTemplateColumns: "1fr auto",
-                                    alignItems: "center",
-                                    gap: "1rem",
-                                    cursor: "pointer",
-                                }}
-                            >
-                                <div>
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            gap: "0.4rem",
-                                            flexWrap: "wrap",
-                                            marginBottom: "0.5rem",
-                                        }}
-                                    >
-                                        {post.tags.slice(0, 2).map((tag) => (
-                                            <span key={tag} className="tag">
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-                                    <h3
-                                        style={{
-                                            fontWeight: 700,
-                                            fontSize: "1rem",
-                                            color: "var(--color-text)",
-                                            marginBottom: "0.35rem",
-                                        }}
-                                    >
-                                        {post.title}
-                                    </h3>
-                                    <p
-                                        style={{
-                                            color: "var(--color-text-muted)",
-                                            fontSize: "0.875rem",
-                                            lineHeight: 1.6,
-                                        }}
-                                    >
-                                        {post.excerpt}
-                                    </p>
-                                </div>
-                                <div style={{ textAlign: "right", flexShrink: 0 }}>
-                                    <div
-                                        style={{
-                                            color: "var(--color-text-muted)",
-                                            fontSize: "0.78rem",
-                                            marginBottom: "0.5rem",
-                                            whiteSpace: "nowrap",
-                                        }}
-                                    >
-                                        {new Date(post.date).toLocaleDateString("en-US", {
-                                            month: "short",
-                                            day: "numeric",
-                                            year: "numeric",
-                                        })}
-                                    </div>
-                                    <span
-                                        style={{
-                                            color: "var(--color-primary)",
-                                            fontWeight: 700,
-                                            fontSize: "1.1rem",
-                                        }}
-                                    >
-                                        →
-                                    </span>
-                                </div>
-                            </article>
-                        </Link>
+                        <PostCard key={post.slug} post={post} />
                     ))}
                 </div>
+
+                {allPosts.length > HOME_POST_COUNT && (
+                    <div style={{ marginTop: "1.75rem", textAlign: "center" }}>
+                        <Link href="/blog" className="btn-outline">
+                            {content.viewAll} ({allPosts.length}) →
+                        </Link>
+                    </div>
+                )}
             </div>
         </section>
     );

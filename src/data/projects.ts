@@ -18,9 +18,16 @@ export const projects: Record<"en" | "zh", Project[]> = {
             github: "https://github.com/jill425/jill425.github.io",
         },
         {
+            title: "Civiclear",
+            description:
+                "Planned and built solo, from product definition and data-source research to implementation and launch. A civic site that makes politics legible for newcomers: every politician, party, issue and office is a clickable node, with campaign promises shown side by side with government records (e.g. city budgets) and a source label on every entry. Covers the 2026 Taiwan mayoral and county elections; data refreshes daily via GitHub Actions.",
+            tags: ["Python", "FastAPI", "PostgreSQL", "React", "TypeScript", "Open Data"],
+            demo: "https://civiclear.club",
+        },
+        {
             title: "Good Friday 2026",
             description:
-                "",
+                "An interactive web app built around 3D models.",
             tags: ["React", "Next.js", "Three.js", "AI"],
             github: "https://github.com/jill425/good_friday",
             demo: "https://goodfriday2026.netlify.app/",
@@ -46,6 +53,13 @@ export const projects: Record<"en" | "zh", Project[]> = {
             tags: ["React", "TypeScript", "TailwindCSS"],
             github: "https://github.com/jill425/jill425.github.io",
             demo: "https://jill425.github.io",
+        },
+        {
+            title: "公民白 Civiclear",
+            description:
+                "從產品規劃、資料源調查到實作上線一人獨立完成。讓政治小白一目瞭然的公民網站：每個政治人物、政黨、議題、職位都是可點的節點，政見與實際作為（如市府預算執行）並列不評分，每筆資料都附來源標籤。涵蓋 2026 直轄市長與 16 個縣市長選舉，GitHub Actions 每日自動更新資料。",
+            tags: ["Python", "FastAPI", "PostgreSQL", "React", "TypeScript", "Open Data"],
+            demo: "https://civiclear.club",
         },
         {
             title: "Good Friday 2026",

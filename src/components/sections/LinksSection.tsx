@@ -1,6 +1,6 @@
 "use client";
 
-import { socialLinks } from "@/data/links";
+import { joinEmail, socialLinks } from "@/data/links";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useState } from "react";
 
@@ -50,6 +50,19 @@ const ICONS: Record<string, React.ReactNode> = {
     ),
 };
 
+const COPY_ICON = (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect width="14" height="14" x="8" y="8" rx="2" />
+        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+    </svg>
+);
+
+const CHECK_ICON = (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M20 6 9 17l-5-5" />
+    </svg>
+);
+
 const LINK_META: Record<string, { label_en: string; label_zh: string; color: string; bg: string }> = {
     github: { label_en: "GitHub", label_zh: "GitHub", color: "#24292e", bg: "#f6f8fa" },
     linkedin: { label_en: "LinkedIn", label_zh: "LinkedIn", color: "#0a66c2", bg: "#f0f7ff" },
@@ -61,16 +74,21 @@ const LINK_META: Record<string, { label_en: string; label_zh: string; color: str
 export function LinksSection() {
     const { language } = useLanguage();
     const content = LINKS_CONTENT[language];
-    const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
+    const [emailCopied, setEmailCopied] = useState(false);
 
     async function copyEmail(email: string) {
         try {
             await navigator.clipboard.writeText(email);
-            setCopiedEmail(email);
-            window.setTimeout(() => setCopiedEmail(null), 1800);
+            setEmailCopied(true);
+            window.setTimeout(() => setEmailCopied(false), 1800);
         } catch {
-            setCopiedEmail(null);
+            setEmailCopied(false);
         }
+    }
+
+    function openMailClient(e: React.MouseEvent<HTMLAnchorElement>, email: string) {
+        e.preventDefault();
+        window.location.href = `mailto:${email}`;
     }
 
     return (
@@ -126,7 +144,7 @@ export function LinksSection() {
             >
                 {socialLinks.map((link) => {
                     const meta = LINK_META[link.icon] || {};
-                    const isEmailLink = link.icon === "email" && link.email;
+                    const emailParts = link.icon === "email" ? link.email : undefined;
                     const label = language === "en" ? (meta.label_en || link.label) : (meta.label_zh || link.label);
                     const commonStyle = {
                         display: "flex",
@@ -161,37 +179,40 @@ export function LinksSection() {
                         },
                     };
 
-                    if (isEmailLink) {
+                    if (emailParts) {
+                        const copyLabel = emailCopied
+                            ? (language === "zh" ? "已複製電子郵件" : "Email copied")
+                            : (language === "zh" ? "複製電子郵件" : "Copy email");
                         return (
                             <div
                                 key={link.label}
                                 style={{ display: "flex", gap: "0.55rem", alignItems: "stretch", flexWrap: "wrap", justifyContent: "center" }}
                             >
                                 <a
-                                    href={link.href}
+                                    href="#contact"
+                                    onClick={(e) => openMailClient(e, joinEmail(emailParts))}
                                     style={commonStyle}
                                     {...hoverProps}
                                 >
                                     {ICONS[link.icon]}
-                                    <span style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", lineHeight: 1.35 }}>
-                                        <span>{label}</span>
-                                        <span style={{ color: "var(--color-text-muted)", fontSize: "0.78rem", fontWeight: 500 }}>
-                                            {link.email}
-                                        </span>
-                                    </span>
+                                    {label}
                                 </a>
                                 <button
                                     type="button"
-                                    onClick={() => copyEmail(link.email || "")}
+                                    onClick={() => copyEmail(joinEmail(emailParts))}
+                                    aria-label={copyLabel}
+                                    title={copyLabel}
                                     style={{
                                         ...commonStyle,
+                                        alignSelf: "center",
                                         cursor: "pointer",
                                         fontFamily: "inherit",
-                                        padding: "0.8rem 1rem",
+                                        padding: "0.45rem",
+                                        borderRadius: "0.5rem",
                                     }}
                                     {...hoverProps}
                                 >
-                                    {copiedEmail === link.email ? (language === "zh" ? "已複製" : "Copied") : (language === "zh" ? "複製" : "Copy")}
+                                    {emailCopied ? CHECK_ICON : COPY_ICON}
                                 </button>
                             </div>
                         );

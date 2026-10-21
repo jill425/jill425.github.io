@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { BlogHeader } from "@/components/BlogHeader";
 import { getAllPostsFromFiles, getPostBySlugFromFiles } from "@/lib/posts-server";
 import { notFound } from "next/navigation";
+import ReactMarkdown, { type Components } from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { estimateReadingMinutes } from "@/lib/posts";
 
 export const dynamicParams = false;
 
@@ -26,51 +30,21 @@ export async function generateMetadata({
     };
 }
 
-function renderContent(content: string) {
-    const lines = content.split("\n");
-    const elements: React.ReactNode[] = [];
-    let codeBlock: string[] = [];
-    let inCode = false;
-    let codeLang = "";
-
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-
-        if (line.startsWith("```")) {
-            if (!inCode) {
-                inCode = true;
-                codeLang = line.slice(3).trim();
-                codeBlock = [];
-            } else {
-                elements.push(
-                    <pre key={i}>
-                        <code data-lang={codeLang}>{codeBlock.join("\n")}</code>
-                    </pre>
-                );
-                inCode = false;
-                codeBlock = [];
-            }
-            continue;
-        }
-
-        if (inCode) {
-            codeBlock.push(line);
-            continue;
-        }
-
-        if (line.startsWith("## ")) {
-            elements.push(<h2 key={i}>{line.slice(3)}</h2>);
-        } else if (line.startsWith("# ")) {
-            elements.push(<h1 key={i}>{line.slice(2)}</h1>);
-        } else if (line.trim() === "") {
-            // skip blank lines
-        } else {
-            elements.push(<p key={i}>{line}</p>);
-        }
-    }
-
-    return elements;
-}
+const markdownComponents: Components = {
+    table: ({ children }) => (
+        <div className="prose-table-wrap">
+            <table>{children}</table>
+        </div>
+    ),
+    a: ({ href, children }) => {
+        const external = href?.startsWith("http");
+        return (
+            <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                {children}
+            </a>
+        );
+    },
+};
 
 export default async function BlogPostPage({
     params,
@@ -83,55 +57,7 @@ export default async function BlogPostPage({
 
     return (
         <>
-            {/* Minimal nav */}
-            <header
-                style={{
-                    borderBottom: "1px solid var(--color-border)",
-                    padding: "1rem 1.5rem",
-                    position: "sticky",
-                    top: 0,
-                    background: "rgba(248,250,255,0.9)",
-                    backdropFilter: "blur(12px)",
-                    zIndex: 50,
-                }}
-            >
-                <div
-                    style={{
-                        maxWidth: "48rem",
-                        margin: "0 auto",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                    }}
-                >
-                    <Link
-                        href="/"
-                        style={{
-                            fontWeight: 800,
-                            fontSize: "1.1rem",
-                            textDecoration: "none",
-                            background:
-                                "linear-gradient(135deg, var(--color-primary), var(--color-accent))",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                            backgroundClip: "text",
-                        }}
-                    >
-                        Jill.dev
-                    </Link>
-                    <Link
-                        href="/#blog"
-                        style={{
-                            fontSize: "0.875rem",
-                            color: "var(--color-primary)",
-                            textDecoration: "none",
-                            fontWeight: 600,
-                        }}
-                    >
-                        ← All Posts
-                    </Link>
-                </div>
-            </header>
+            <BlogHeader backHref="/blog" backLabel="← All Posts" />
 
             <main
                 style={{
@@ -142,7 +68,7 @@ export default async function BlogPostPage({
             >
                 {/* Tags */}
                 <div
-                    style={{ display: "flex", gap: "0.4rem", marginBottom: "1.25rem" }}
+                    style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: "1.25rem" }}
                 >
                     {post.tags.map((tag) => (
                         <span key={tag} className="tag">
@@ -193,7 +119,7 @@ export default async function BlogPostPage({
                             fontSize: "0.875rem",
                         }}
                     >
-                        {Math.ceil(post.content.split(" ").length / 200)} min read
+                        {estimateReadingMinutes(post.content)} min read
                     </span>
                 </div>
 
@@ -213,11 +139,15 @@ export default async function BlogPostPage({
                 </p>
 
                 {/* Content */}
-                <div className="prose">{renderContent(post.content)}</div>
+                <div className="prose">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                        {post.content}
+                    </ReactMarkdown>
+                </div>
 
                 {/* Back link */}
                 <div style={{ marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid var(--color-border)" }}>
-                    <Link href="/#blog" className="btn-outline">
+                    <Link href="/blog" className="btn-outline">
                         ← Back to Blog
                     </Link>
                 </div>

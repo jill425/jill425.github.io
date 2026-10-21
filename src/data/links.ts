@@ -1,9 +1,19 @@
+// 電子郵件地址拆成兩段存放，頁面原始碼裡不出現完整地址，點擊時才組起來，避免被爬蟲收集
+export type EmailParts = {
+    user: string;
+    domain: string;
+};
+
 export type SocialLink = {
     label: string;
-    href: string;
+    href?: string;
     icon: "github" | "email";
-    email?: string;
+    email?: EmailParts;
 };
+
+export function joinEmail({ user, domain }: EmailParts): string {
+    return `${user}@${domain}`;
+}
 
 export const socialLinks: SocialLink[] = [
     {
@@ -13,8 +23,7 @@ export const socialLinks: SocialLink[] = [
     },
     {
         label: "Email",
-        href: "mailto:jill.chen2017@email.com",
         icon: "email",
-        email: "jill.chen2017@email.com",
+        email: { user: "jill.chen2017", domain: "email.com" },
     },
 ];

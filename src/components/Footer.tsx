@@ -11,7 +11,7 @@ export function Footer() {
             }}
         >
             <p>
-                · © {new Date().getFullYear()} Jill
+                © {new Date().getFullYear()} Jill
             </p>
         </footer>
     );

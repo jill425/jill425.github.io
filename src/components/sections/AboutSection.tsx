@@ -6,15 +6,15 @@ const ABOUT_CONTENT = {
     en: {
         sectionLabel: "About Me",
         title: "A little about me",
-        p1: "As a Data Engineer, I specialize in building big data platforms, designing asynchronous task architectures, and developing distributed web scraping systems. By deeply integrating advanced AI tools into my daily workflow, I significantly accelerate the development cycle and enhance architectural designs. I am highly proficient in Python and Node.js, with hands-on experience in ecosystems like Apache NiFi, Kafka, and Elasticsearch.",
-        p2: "I also possess an entrepreneurial mindset, having recently founded a digital agency and successfully launched two commercial mobile apps using Flutter. Whether it's parsing complex data sources, building data lake infrastructure, or developing cross-platform applications, I bridge the gap between technical architecture and business value.",
+        p1: "I'm an AI engineer working across backend and data, with years of data engineering behind me, specializing in building big data platforms, designing asynchronous task architectures, and developing distributed web scraping systems. By deeply integrating advanced AI tools into my daily workflow, I significantly accelerate the development cycle and enhance architectural designs. What I care about most is making AI reliable: encoding rules as gate tests, separating doing from verifying, and using eval thresholds to check the safety of LLM features, so AI output can be verified. I am highly proficient in Python and Node.js, with hands-on experience in ecosystems like Apache NiFi, Kafka, and Elasticsearch.",
+        p2: "I also possess an entrepreneurial mindset, having recently founded a digital agency and successfully launched two commercial mobile apps using Flutter. I can take a product on my own from planning and requirements through architecture, implementation and launch — the projects below, from mobile apps to the Civiclear civic site, were built this way. Whether it's parsing complex data sources, building data lake infrastructure, or developing cross-platform applications, I bridge the gap between technical architecture and business value.",
         skillsLabel: "Skills & Tools",
     },
     zh: {
         sectionLabel: "關於我",
         title: "關於我",
-        p1: "專注於大數據處理平台建置、非同步任務架構設計與分散式爬蟲系統開發的 Data Engineer。在近期的專案與創業經驗中，我大量導入各種強大的 AI 輔助開發工具，這不僅顛覆了以往的開發模式，更極大地增進了功能的迭代效率與架構設計的驗證速度。具有 Python、Node.js，並具備 Apache NiFi、Kafka 等大數據生態系實戰經驗。",
-        p2: "我也具備帶領產品從零到一的創業者思維，近期創辦數位公司並透過 Flutter 成功上線 App。無論是解析複雜的數據源、建立資料湖基礎設施，或是開發跨平台應用，我都能結合架構思考與業務價值，提供全方位的技術解決方案。",
+        p1: "現任 AI 工程師，橫跨後端與數據，過去多年以 Data Engineer 身分專注於大數據處理平台建置、非同步任務架構設計與分散式爬蟲系統開發。在近期的專案與創業經驗中，我大量導入各種強大的 AI 輔助開發工具，這不僅顛覆了以往的開發模式，更極大地增進了功能的迭代效率與架構設計的驗證速度。我更在意的是讓 AI 可靠：把規則寫成守門測試、把做事與驗收分開、用 eval 門檻驗收 LLM 功能的安全性，讓 AI 的產出可以被驗證。具有 Python、Node.js，並具備 Apache NiFi、Kafka 等大數據生態系實戰經驗。",
+        p2: "我也具備帶領產品從零到一的創業者思維，近期創辦數位公司並透過 Flutter 成功上線 App。我能獨自把一個產品從規劃、需求釐清、架構設計一路做到實作上線，下方的作品從行動 App 到公民白 Civiclear 都是這樣完成的。無論是解析複雜的數據源、建立資料湖基礎設施，或是開發跨平台應用，我都能結合架構思考與業務價值，提供全方位的技術解決方案。",
         skillsLabel: "技術與工具",
     }
 };

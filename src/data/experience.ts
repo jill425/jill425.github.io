@@ -11,12 +11,27 @@ export const experience: Record<"en" | "zh", TimelineEntry[]> = {
     en: [
         {
             type: "work",
+            title: "AI Engineer / Backend Engineer",
+            organization: "Securities Company",
+            period: "2026/06 – Present",
+            description: [
+                "Built an app backend from scratch (Python / FastAPI) as the sole backend engineer: planned the architecture and phased roadmap, and delivered 20 business domains in just over two months, normalizing data from trading, market-data and third-party upstreams into one API contract.",
+                "Automated quality gates: grew the test suite from 229 to 1,784 tests at 95% coverage, plus gate tests that mechanically enforce OpenAPI documentation, external contract rules, doc–code consistency and re-runnable migrations.",
+                "Set up operations groundwork: versioned database changes with Flyway, a cron sidecar with cross-process locks, ELK structured logging with request IDs and full error chains, a unified error contract, and log-scrubbing rules for sensitive data.",
+                "Filled product gaps while requirements were still open: scoped and built an admin console with a drag-and-drop layout editor, and learned Flutter to build a component preview site so PMs and operators can compose screens themselves.",
+                "Made AI-assisted development reliable: built a Claude Code workflow that separates task writing, implementation and isolated acceptance testing (tied to GitLab issues and merge requests), where AI output only counts as done with evidence from tests actually run; encoded project rules as gate tests so violations fail immediately instead of relying on the model to remember them.",
+                "Researched AI agent architectures (LangGraph, deepagents) and prototyped a multi-agent customer-service system for a financial setting that treats the LLM as an untrusted rephraser: account scoping enforced in the tool layer, two-way PII masking, prompt-injection defenses and audit logs, verified by eval thresholds (zero PII or cross-account leaks, ≥95% injection defense)."
+            ],
+            tags: ["Python", "FastAPI", "MySQL", "Flyway", "ELK", "Docker", "Claude Code", "LangGraph", "promptfoo"],
+        },
+        {
+            type: "work",
             title: "Developer",
             organization: "Independent Developer",
-            period: "2025/05 – Present",
+            period: "2025/05 – 2026/05",
             description: [
                 "Freelance developer building cross-platform mobile applications with Flutter.",
-                "Successfully launched and currently operating two mobile apps in production."
+                "Successfully launched and currently operating two mobile apps in production, owning the full lifecycle from requirements analysis and architecture to store release and maintenance."
             ],
             tags: ["Flutter", "Dart", "Mobile App Development"],
         },
@@ -62,9 +77,24 @@ export const experience: Record<"en" | "zh", TimelineEntry[]> = {
     zh: [
         {
             type: "work",
+            title: "AI 工程師／後端工程師",
+            organization: "證券公司",
+            period: "2026/06 – 仍在職",
+            description: [
+                "獨立負責、從零建置 App 後端服務（Python／FastAPI）：自主規劃架構與分階段路線圖，兩個多月交付 20 個業務 domain，把交易、行情與第三方資料等多個上游正規化成統一的 API 契約。",
+                "品質自動化：測試由 229 條成長到 1,784 條、覆蓋率 95%；另以守門測試機械檢查 OpenAPI 說明、對外契約、文件與程式一致、migration 可重跑等規則，漏寫當場失敗。",
+                "維運基礎：導入 Flyway 版本化資料庫變更、cron sidecar 排程與跨 process 鎖、ELK 結構化 log（帶 request_id 與完整錯誤鏈），並定義統一錯誤契約與敏感資料不落 log 的規則。",
+                "需求只給大方向時主動補位：自行規劃並建置營運後台與拖拉式版面編輯器，並自學 Flutter 建元件預覽站，讓 PM 與操作人員能自行組版、預覽畫面。",
+                "讓 AI 協作開發可靠：以 Claude Code 建立建單、實作、隔離驗收分離的流程（與 GitLab issue／MR 綁定），AI 的產出要附實際跑過的證據才算完成；並把專案規則寫成守門測試，違規當場失敗，不靠模型記得。",
+                "調研 AI agent 架構（LangGraph、deepagents），實作金融情境的多代理客服原型：把 LLM 當不可信的潤飾器，帳戶範圍寫死在工具層、PII 雙向遮蔽、prompt injection 防護與 audit log，並以 eval 門檻驗收（個資與跨帳戶洩漏 = 0、injection 防護 ≥ 95%）。"
+            ],
+            tags: ["Python", "FastAPI", "MySQL", "Flyway", "ELK", "Docker", "Claude Code", "LangGraph", "promptfoo"],
+        },
+        {
+            type: "work",
             title: "開發工程師",
             organization: "獨立開發者",
-            period: "2025/05 – 仍在職",
+            period: "2025/05 – 2026/05",
             description: [
                 "獨立接案開發，使用 Flutter 開發跨平台行動應用程式。",
                 "目前成功上線運營中，負責從需求分析、架構設計到上架維運的完整軟體生命週期。"

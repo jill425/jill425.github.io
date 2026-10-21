@@ -118,6 +118,18 @@ Claude 先去查了熱門技術部落格的文章結構，再設計出完整骨�
     },
 ];
 
+// 中文沒有空白分詞，所以中日韓字元按字數算（約每分鐘 400 字），其餘按英文單字算（約每分鐘 200 字）
+const CJK_CHARS_PER_MINUTE = 400;
+const WORDS_PER_MINUTE = 200;
+const CJK_CHAR = /[㐀-鿿豈-﫿぀-ヿ가-힯]/g;
+
+export function estimateReadingMinutes(content: string): number {
+    const cjkCount = content.match(CJK_CHAR)?.length ?? 0;
+    const wordCount = content.replace(CJK_CHAR, " ").split(/\s+/).filter(Boolean).length;
+    const minutes = cjkCount / CJK_CHARS_PER_MINUTE + wordCount / WORDS_PER_MINUTE;
+    return Math.max(1, Math.ceil(minutes));
+}
+
 export function getPostBySlug(slug: string): Post | undefined {
     return posts.find((p) => p.slug === slug);
 }
