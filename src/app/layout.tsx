@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import { LanguageProvider } from "@/i18n/LanguageContext";
+import { SiteNav } from "@/components/SiteNav";
+import { Footer } from "@/components/Footer";
 import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Jill — Software Engineer",
+  title: "Jill — AI Engineer · Backend & Data",
   description:
-    "Personal portfolio and blog of Jill, a software engineer passionate about building great products.",
+    "Jill builds products end to end and puts AI to work reliably: gate tests, isolated acceptance and eval thresholds.",
   openGraph: {
-    title: "Jill — Software Engineer",
-    description: "Portfolio, projects, and blog posts by Jill.",
+    title: "Jill — AI Engineer · Backend & Data",
+    description: "Work, experience and writing by Jill.",
     url: "https://jill425.github.io",
     siteName: "Jill's Portfolio",
     type: "website",
@@ -39,7 +41,10 @@ export default function RootLayout({
       </head>
       <body>
         <LanguageProvider>
+          <div className="crt" aria-hidden="true" />
+          <SiteNav />
           {children}
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

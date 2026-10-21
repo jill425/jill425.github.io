@@ -1,4 +1,3 @@
-import { BlogHeader } from "@/components/BlogHeader";
 import { BlogIndex } from "@/components/BlogIndex";
 import { getAllPostsFromFiles } from "@/lib/posts-server";
 
@@ -8,12 +7,5 @@ export const metadata = {
 };
 
 export default function BlogIndexPage() {
-    const posts = getAllPostsFromFiles();
-
-    return (
-        <>
-            <BlogHeader backHref="/" backLabel="← Home" />
-            <BlogIndex posts={posts} />
-        </>
-    );
+    return <BlogIndex posts={getAllPostsFromFiles()} />;
 }
